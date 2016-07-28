@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue js</title>
+    <style>
+        .comp{color:red;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li @click="addtrui(task)" :class="{'comp':task.comp}" v-for="task in tasks">{{task.body}}</li>
+    </ul>
+
+
+
+</div>
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            tasks:[
+                {body:'你好漂亮',comp:true},
+                {body:'i miss you',comp:false},
+                {body:'so cool',comp:true},
+                {body:'my leacent',comp:false}
+            ]
+        },
+        methods:{
+            addtrui:function(task){
+                task.comp=!task.comp;
+            }
+        }
+
+    })
+</script>
+</body>
+
+</html>

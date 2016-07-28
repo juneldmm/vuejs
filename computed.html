@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue js</title>
+</head>
+<body>
+<div id="app">
+laravel用户{{username}}
+
+<p><input type="text" v-model="first"></p>
+    <p> <input type="text" v-model="last"></p>
+
+
+</div>
+
+
+
+<script src="vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+          first:'maggie',
+            last:'leacent'
+        },
+        computed:{
+            username:function(){
+                return this.first+'  '+this.last;
+            }
+        }
+
+    })
+</script>
+</body>
+
+</html>

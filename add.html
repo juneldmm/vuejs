@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue js</title>
+    <style type="text/css">
+        .comp{color:red;}
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <todo-app :list="tasks">
+    </todo-app>
+    <todo-app :list="[{body:'自定义',comp:false}]">
+    </todo-app>
+
+    <template id="toda-id">
+        <h1>我的任务<span v-show="remain">（{{remain}}）</span></h1>
+        <ul>
+            <li @click="addtrui(task)" :class="{'comp':task.comp}" v-for="task in list">{{task.body}}
+                <strong @click="deletetask(task)">delete</strong></li>
+        </ul>
+    </template>
+
+
+</div>
+<script src="vue.js"></script>
+<script>
+    Vue.component('todo-app', {
+        template:"#toda-id",
+        props:['list'],
+        methods:{
+            addtrui:function(task){
+                task.comp=!task.comp;
+            },
+            deletetask:function(task){
+                this.list.$remove(task);
+
+            }
+        },
+        computed:{
+            remain:function(){
+                return this.list.filter(function(task){
+                    return !task.comp;
+                }).length;
+            }
+        }
+    });
+
+    new Vue({
+        el: '#app',
+        data:{
+            tasks:[
+                {body:'你好漂亮',comp:true},
+                {body:'i miss you',comp:false},
+                {body:'so cool',comp:true},
+                {body:'my leacent',comp:false}
+            ]
+        }
+
+
+    })
+</script>
+</body>
+
+</html>

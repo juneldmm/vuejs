@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue js</title>
+    <style>
+        .comp{color:red;}
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <todo-app :list="tasks">
+    </todo-app>
+    <todo-app :list="[{body:'自定义',comp:false}]">
+    </todo-app>
+
+    <template id="toda-id">
+        <ul>
+            <li @click="addtrui(task)" :class="{'comp':task.comp}" v-for="task in list">{{task.body}}</li>
+        </ul>
+    </template>
+
+
+</div>
+<script src="vue.js"></script>
+<script>
+    Vue.component('todo-app', {
+        template:"#toda-id",
+        props:['list'],
+        methods:{
+            addtrui:function(task){
+                task.comp=!task.comp;
+            }
+        }
+            });
+    new Vue({
+        el: '#app',
+        data:{
+            tasks:[
+                {body:'你好漂亮',comp:true},
+                {body:'i miss you',comp:false},
+                {body:'so cool',comp:true},
+                {body:'my leacent',comp:false}
+            ]
+        },
+
+
+    })
+</script>
+</body>
+
+</html>
